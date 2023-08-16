@@ -18,7 +18,7 @@ EXPOSE 8000
 
 # Install system dependencies
 RUN apt-get update \
-  && apt-get -y install netcat gcc postgresql \
+  && apt-get -y install  gcc postgresql \
   && apt-get clean
 
 # Install Python dependencies
@@ -34,7 +34,7 @@ COPY ./entrypoint.sh .
 RUN chmod +x /usr/backend/entrypoint.sh
 
 # Execute entrypoint.sh
-ENTRYPOINT ["/usr/backend/entrypoint.sh" ]
-
+#ENTRYPOINT ["/usr/backend/entrypoint.sh" ]
+EXPOSE 8000
 # Start up the backend server
 CMD uvicorn src.main:backend_app --reload --workers 4 --host 0.0.0.0 --port 8000
